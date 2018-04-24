@@ -1,0 +1,177 @@
+<!--------------------------------------------------------------------------->  
+<!--                           Uvod                                
+
+Predloga (HTML verzija)
+
+Sledi spodnjim trem korakom:
+ 
+     1. Izdelaj opis po navodilih
+     2. Dodaj povezavo do projekta in slik
+     3. Dodaj tekst
+
+Vse nadaljne oblikovanje bo izvedeno avtomatsko
+
+-->  
+<!--------------------------------------------------------------------------->  
+<!--                       PRESKOČI                                        -->
+<html>
+<head>
+<title>Tehniška gimnazija</title>
+<style type="text/css">
+BODY, P, TD {
+	font-family: Arial;
+	font-size: 10pt;
+}
+H2,H3,H4,H5 { color: #ff9900; font-weight: bold; }
+H2 { font-size: 13pt; }
+H3 { font-size: 12pt; }
+H4 { font-size: 10pt; color: black; }
+PRE {
+	BACKGROUND-COLOR: #9CEDB0;
+	FONT-FAMILY: "Courier New", Courier, monospace;
+	WHITE-SPACE: pre;
+	font-size: small;
+	font-weight: normal;
+}
+CODE { COLOR: #990000; FONT-FAMILY: "Courier New", Courier, mono; }
+</style>
+<link rel="stylesheet" type=text/css href="http://www.codeproject.com/styles/global.css">
+</head>
+<body bgcolor="#FFFFFF">
+<!--------------------------------------------------------------------------->  
+
+
+<!-------------------------------     KORAK 1      --------------------------->
+<!--  Izpolni podrobnosti ---------------------------------------------------->
+
+<pre>
+Naslov: Razstavljane Formule
+Avtor: Tilen Okretič
+Email: tilen.okretic@gmail.com
+Jezik: java 
+Nivo: Začetni
+Opis: Razstavi formulo in sesteje ter izpise vse atome
+Ključne besede: 
+Licenca:<a href="http://www.codeproject.com/info/licenses.aspx">MIT</a>
+</pre>
+
+<!-------------------------------     KORAK 2      --------------------------->
+<!--  Dodaj sliko in informacije o zip-u z izvorno in izvedljivo kodo.      --> 
+
+<ul class=download>
+<li><a href="Razclenitev-Formule-master.zip"> Projekt in izvorna koda- 11 Kb </a></li>
+</ul>
+
+
+<!-------------------------------     KORAK 3      --------------------------->
+
+<!--  Dodaj tekst. Pusti preprosto oblikovanje (<h2>, <p> etc)              --> 
+
+<h2>Uvod</h2>
+
+<p>Opis kode se nahaja v izvorni kodi</p>
+
+<h2>Uporaba programske kode</h2>
+
+<p>Natancen opis se nahaja v izvirni kodi. Posebnost je alogitem,ki postopoma razcleni formulo v bolj preproste oblike in nakonuc shrahi podatke v "Map" in izpise vrednosti</p>
+
+<p>Zanimivost:</p>
+
+<pre>
+ private static List<String> normalize(String[] f){
+
+        List<String> res = new ArrayList<>();
+
+        List<String> formula = new ArrayList<>(Arrays.asList(f));
+
+        for (int i = 0; i < formula.size(); i++) {
+
+            String cur = formula.get(i);
+
+            if(!cur.equals("(") && !isNumber(cur) && i+1 == formula.size())formula.add("1");
+
+            if(i + 1 >= formula.size())break;
+
+            String next = formula.get(i + 1);
+
+            if(!cur.equals("(")  && !isNumber(cur) && !isNumber(next) && isUpperCase(next)){
+
+                formula.add(i+1,"1");
+
+            }
+
+        }
+
+
+        for (int i = 0; i < formula.size(); i++) {
+
+            String cur = formula.get(i);
+
+            if(cur.equals(")")){
+
+                int mul_n = Integer.parseInt(formula.get(i + 1));
+
+                formula.remove(i+1);
+
+                int s = res.size() - 1;
+
+                for (int k = s;k > 0;k--){
+
+                    String _cur = res.get(k);
+
+                    if(_cur.equals("(")){
+                        res.remove(k);
+                        formula.remove(i);
+                        i--;
+                        break;
+                    }else {
+                        if(isNumber(_cur)){
+                            res.set(k,Integer.parseInt(_cur) * mul_n + "");
+                        }
+                    }
+                }
+            }else{
+                res.add(cur);
+            }
+        }
+
+        for (int i = 0; i < res.size(); i++) {
+
+            String _cur = res.get(i);
+
+            if (!isNumber(_cur) && isUpperCase(_cur)) {
+
+                String _next = res.get(i+1);
+
+                if(!isNumber(_next)){
+
+                    if (!isUpperCase(_next)){
+
+                        res.set(i,res.get(i) + res.get(i+1));
+
+                        res.remove(i+1);
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        return res;
+    }
+
+</pre>
+
+<p> Glavna spremenljivka: <code>formula</code>.</p>
+
+<h2>Zgodovina</h2>
+
+<p>To je verzija 1.0
+
+
+<!-------------------------------    To je to!   --------------------------->
+</body>
+
+</html>
