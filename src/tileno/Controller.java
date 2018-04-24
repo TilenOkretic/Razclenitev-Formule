@@ -57,9 +57,14 @@ public class Controller implements Initializable {
 
             progress.setText("Loading...");
 
-            for(Map.Entry<String,Integer> e : fm.getFormulaMap().entrySet()){
+            
+            
+            /**
+             * Zanka,ki izpise vse atome
+             */
+            fm.getFormulaMap().entrySet().forEach((e) -> {
                 _out.append(e.getKey()).append(" ").append(e.getValue()).append(" \n");
-            }
+            });
 
             output.setText(_out.toString());
 
